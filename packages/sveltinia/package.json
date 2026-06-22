@@ -1,0 +1,18 @@
+{
+  "name": "sveltinia",
+  "version": "0.1.0",
+  "description": "Pinia-inspired stores for Svelte and SvelteKit",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {"types":"./dist/index.d.ts","default":"./dist/index.js"},
+    "./svelte": {"types":"./dist/svelte.d.ts","default":"./dist/svelte.js"},
+    "./sveltekit": {"types":"./dist/sveltekit.d.ts","default":"./dist/sveltekit.js"},
+    "./persist": {"types":"./dist/persist.d.ts","default":"./dist/persist.js"},
+    "./debug": {"types":"./dist/debug.d.ts","default":"./dist/debug.js"}
+  },
+  "files": ["dist"],
+  "scripts": {"build":"tsc -p tsconfig.json"},
+  "peerDependencies": {"svelte":"^4.0.0 || ^5.0.0"}
+}
