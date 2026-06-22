@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Sveltinia logo">
+  <rect width="256" height="256" rx="58" fill="#090c09"/>
+  <path d="m64 54 132 42-72 112Z" fill="#172113"/>
+  <path d="m64 54 74 64-14 90Z" fill="#3f693a"/>
+  <path d="m138 118 58-22-72 112Z" fill="#3e5a23"/>
+  <path d="m64 54 132 42-58 22Z" fill="#070705" opacity=".32"/>
+</svg>

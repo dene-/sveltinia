@@ -6,6 +6,9 @@ Pinia-inspired stores for Svelte and SvelteKit, with Options Stores, Setup Store
 
 ```bash
 npm install sveltinia
+# or: yarn add sveltinia
+# or: pnpm add sveltinia
+# or: bun add sveltinia
 ```
 
 ## Quick start
