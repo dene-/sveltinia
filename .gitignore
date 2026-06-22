@@ -3,4 +3,7 @@ dist
 coverage
 .svelte-kit
 .vite
+apps/docs/.vitepress/cache
+.yarn-cache
+.yarn-global
 .env
