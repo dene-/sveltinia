@@ -35,9 +35,17 @@ yarn add sveltinia
 npm install sveltinia
 ```
 
+```sh [pnpm]
+pnpm add sveltinia
+```
+
+```sh [Bun]
+bun add sveltinia
+```
+
 :::
 
-Sveltinia supports Svelte 4 and Svelte 5.
+Choose whichever package manager your project already uses. Sveltinia supports Svelte 4 and Svelte 5.
 
 ## Create the root
 

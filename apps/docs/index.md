@@ -33,7 +33,7 @@ head:
         <a class="button button--primary" href="./docs/">Read the docs →</a>
         <a class="button" href="https://github.com/dene-/sveltinia">View on GitHub</a>
       </div>
-      <div class="install"><span>$</span><code>yarn add sveltinia</code></div>
+      <div class="install"><span>$</span><code>npm install sveltinia</code></div>
     </div>
     <div class="code-window" aria-label="Sveltinia Options Store example">
       <div class="code-window__bar" aria-hidden="true"><i></i><i></i><i></i></div>
