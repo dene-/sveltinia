@@ -101,7 +101,7 @@ head:
     <div class="landing__inner">
       <h2 id="cta-title">Small API. Complete state lifecycle.</h2>
       <p>Start with one store and add persistence, diagnostics, or SSR only when the application needs them.</p>
-      <a class="button button--primary" href="./docs/">Explore the complete API →</a>
+      <a class="button button--primary" href="./docs/#api-reference">API reference →</a>
     </div>
   </section>
 </main>

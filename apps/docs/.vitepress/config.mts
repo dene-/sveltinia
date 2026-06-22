@@ -55,6 +55,6 @@ export default defineConfig({
     outline: { level: [2, 3], label: 'On this page' },
     docFooter: { prev: false, next: false },
     socialLinks: [{ icon: 'github', link: 'https://github.com/dene-/sveltinia' }],
-    footer: { message: 'Typed stores. Request-safe SSR. No runtime surprises.', copyright: 'MIT licensed.' }
+    footer: { message: 'Typed stores. Request-safe SSR. No runtime surprises.' }
   }
 })
