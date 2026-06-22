@@ -9,7 +9,7 @@ export default defineConfig({
   appearance: 'dark',
   sitemap: { hostname: 'https://dene-.github.io/sveltinia/' },
   head: [
-    ['meta', { name: 'theme-color', content: '#090a0b' }],
+    ['meta', { name: 'theme-color', content: '#090c09' }],
     ['meta', { name: 'author', content: 'Sveltinia' }]
   ],
   themeConfig: {
