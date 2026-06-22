@@ -24,6 +24,19 @@ head:
       content: summary_large_image
 ---
 
+<script setup lang="ts">
+import { ref } from 'vue'
+
+type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun'
+const packageManager = ref<PackageManager>('npm')
+const installCommands: Record<PackageManager, string> = {
+  npm: 'npm install sveltinia',
+  yarn: 'yarn add sveltinia',
+  pnpm: 'pnpm add sveltinia',
+  bun: 'bun add sveltinia'
+}
+</script>
+
 <main class="landing">
   <section class="hero landing__inner" aria-labelledby="hero-title">
     <div>
@@ -33,7 +46,15 @@ head:
         <a class="button button--primary" href="./docs/">Read the docs →</a>
         <a class="button" href="https://github.com/dene-/sveltinia">View on GitHub</a>
       </div>
-      <div class="install"><span>$</span><code>npm install sveltinia</code></div>
+      <div class="package-install">
+        <div class="package-install__tabs" role="tablist" aria-label="Package manager">
+          <button role="tab" :aria-selected="packageManager === 'npm'" @click="packageManager = 'npm'">npm</button>
+          <button role="tab" :aria-selected="packageManager === 'yarn'" @click="packageManager = 'yarn'">Yarn</button>
+          <button role="tab" :aria-selected="packageManager === 'pnpm'" @click="packageManager = 'pnpm'">pnpm</button>
+          <button role="tab" :aria-selected="packageManager === 'bun'" @click="packageManager = 'bun'">Bun</button>
+        </div>
+        <div class="package-install__command"><span>$</span><code>{{ installCommands[packageManager] }}</code></div>
+      </div>
     </div>
     <div class="code-window" aria-label="Sveltinia Options Store example">
       <div class="code-window__bar" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -101,7 +122,7 @@ head:
     <div class="landing__inner">
       <h2 id="cta-title">Small API. Complete state lifecycle.</h2>
       <p>Start with one store and add persistence, diagnostics, or SSR only when the application needs them.</p>
-      <a class="button button--primary" href="./docs/#api-reference">API reference →</a>
+      <a class="button button--primary" href="./docs/api">API reference →</a>
     </div>
   </section>
 </main>
