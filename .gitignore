@@ -7,3 +7,4 @@ apps/docs/.vitepress/cache
 .yarn-cache
 .yarn-global
 .env
+apps/docs/.vitepress/cache

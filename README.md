@@ -1,6 +1,6 @@
 # Sveltinia
 
-Pinia-inspired stores for Svelte and SvelteKit, with Options Stores, Setup Stores, plugins, persistence, mutation subscriptions, action hooks, SSR state transfer, and opt-in debugging.
+Sveltinia-inspired stores for Svelte and SvelteKit, with Options Stores, Setup Stores, plugins, persistence, mutation subscriptions, action hooks, SSR state transfer, and opt-in debugging.
 
 ## Install
 
@@ -14,9 +14,9 @@ npm install sveltinia
 ## Quick start
 
 ```ts
-import { createPinia, defineStore } from 'sveltinia'
+import { createSveltinia, defineStore } from 'sveltinia'
 
-export const pinia = createPinia({ debug: import.meta.env.DEV })
+export const sveltinia = createSveltinia({ debug: import.meta.env.DEV })
 
 export const useCounter = defineStore('counter', {
   state: () => ({ count: 0 }),
@@ -30,13 +30,13 @@ Install first-party plugins once per root:
 
 ```ts
 import { createDebugPlugin, createPersistedState } from 'sveltinia'
-pinia.use(createDebugPlugin()).use(createPersistedState())
+sveltinia.use(createDebugPlugin()).use(createPersistedState())
 ```
 
 Use the store in application code:
 
 ```ts
-const counter = useCounter(pinia)
+const counter = useCounter(sveltinia)
 counter.increment()
 console.log(counter.double)
 ```

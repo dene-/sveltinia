@@ -8,10 +8,10 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {"types":"./dist/index.d.ts","default":"./dist/index.js"},
-    "./svelte": {"types":"./dist/svelte.d.ts","default":"./dist/svelte.js"},
-    "./sveltekit": {"types":"./dist/sveltekit.d.ts","default":"./dist/sveltekit.js"},
-    "./persist": {"types":"./dist/persist.d.ts","default":"./dist/persist.js"},
-    "./debug": {"types":"./dist/debug.d.ts","default":"./dist/debug.js"}
+    "./svelte": {"types":"./dist/adapters/svelte.d.ts","default":"./dist/adapters/svelte.js"},
+    "./sveltekit": {"types":"./dist/adapters/sveltekit.d.ts","default":"./dist/adapters/sveltekit.js"},
+    "./persist": {"types":"./dist/plugins/persist.d.ts","default":"./dist/plugins/persist.js"},
+    "./debug": {"types":"./dist/plugins/debug.d.ts","default":"./dist/plugins/debug.js"}
   },
   "files": ["dist"],
   "scripts": {"build":"tsc -p tsconfig.json"},
