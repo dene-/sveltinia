@@ -45,6 +45,6 @@ const sveltinia = stores.create(data.initialStoreState)
 
 | Method | Behavior |
 | --- | --- |
-| `create(serialized?)` | Creates a root, installs first-party persistence/debug plugins, activates it, and optionally seeds state |
+| `create(serialized?)` | Creates a root, installs first-party persistence/debug plugins, and optionally seeds state |
 | `serialize(sveltinia)` | Returns a cloned plain state object |
 | `hydrate(sveltinia, state)` | Clones incoming state into the root and patches stores that already exist |

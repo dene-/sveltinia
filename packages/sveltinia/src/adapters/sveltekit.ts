@@ -1,4 +1,4 @@
-import { createSveltinia as createRoot, setActiveSveltinia } from '../core.js'
+import { createSveltinia as createRoot } from '../core.js'
 import { clone } from '../internal/reactivity.js'
 import { createPersistedState } from '../plugins/persist.js'
 import { createDebugPlugin } from '../plugins/debug.js'
@@ -12,7 +12,6 @@ export function createSveltinia(
     create(serialized?: Record<string, StateTree>): Sveltinia {
       const sveltinia = createRoot({ ...options, state: serialized ?? options.state })
       for (const plugin of plugins) sveltinia.use(plugin)
-      setActiveSveltinia(sveltinia)
       return sveltinia
     },
     serialize(sveltinia: Sveltinia): Record<string, StateTree> {

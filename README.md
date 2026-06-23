@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Sveltinia stores for Svelte and SvelteKit.</strong><br>
-  Rune-backed state, persisted stores, plugins, action hooks, mutation subscriptions, request-safe SSR.
+  Typed stores, persistence, plugins, action hooks, mutation subscriptions, request-safe SSR.
 </p>
 
 <p align="center">

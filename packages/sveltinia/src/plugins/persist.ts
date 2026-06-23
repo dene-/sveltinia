@@ -1,4 +1,4 @@
-import { clone, merge } from '../internal/reactivity.js'
+import { clone, isSafeKey, merge } from '../internal/reactivity.js'
 import {
   DEBUG_KIND,
   DEFAULT_PERSIST_VERSION,
@@ -55,7 +55,7 @@ function pickPaths(state: StateTree, paths?: string[]): StateTree {
     let destination: StateTree = out
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i]
-      if (!(segment in source)) break
+      if (!isSafeKey(segment) || !Object.hasOwn(source, segment)) break
       if (i === segments.length - 1) {
         destination[segment] = clone(source[segment])
       } else {

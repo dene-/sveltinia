@@ -12,6 +12,22 @@ describe('advanced features', () => {
     const sveltinia = createSveltinia(); sveltinia.use(createPersistedState()); const useCart = defineStore('cart', { state: () => ({ items: [] as string[], transient: 1 }), persist: { storage, paths: ['items'] } })
     const cart = useCart(sveltinia); await cart.$restore(); expect(cart.items).toEqual(['a']); cart.items.push('b'); await cart.$persist(); expect(JSON.parse(data.get('sveltinia:cart')!).state).toEqual({ items: ['a','b'] })
   })
+  it('ignores unsafe persisted state keys', async () => {
+    const data = new Map<string, string>([
+      ['sveltinia:cart', '{"state":{"items":["a"],"__proto__":{"polluted":true}}}'],
+    ])
+    const storage = { getItem: (k: string) => data.get(k) ?? null, setItem: (k: string, v: string) => void data.set(k,v) }
+    const sveltinia = createSveltinia(); sveltinia.use(createPersistedState()); const useCart = defineStore('cart', { state: () => ({ items: [] as string[] }), persist: { storage } })
+    const cart = useCart(sveltinia); await cart.$restore()
+    expect(cart.items).toEqual(['a']); expect(Object.getPrototypeOf(cart.$state)).toBe(Object.prototype)
+  })
+  it('does not persist inherited or unsafe paths', async () => {
+    const data = new Map<string, string>()
+    const storage = { getItem: (k: string) => data.get(k) ?? null, setItem: (k: string, v: string) => void data.set(k,v) }
+    const sveltinia = createSveltinia(); sveltinia.use(createPersistedState()); const useCart = defineStore('cart', { state: () => ({ items: ['a'] }), persist: { storage, paths: ['items', 'constructor.prototype'] } })
+    const cart = useCart(sveltinia); await cart.$persist()
+    expect(JSON.parse(data.get('sveltinia:cart')!).state).toEqual({ items: ['a'] })
+  })
   it('rejects unsupported persistence storage names', () => {
     const sveltinia = createSveltinia(); sveltinia.use(createPersistedState())
     const useCart = defineStore('cart', { state: () => ({ items: [] as string[] }), persist: { storage: 'localstorage' as 'localStorage' } })
