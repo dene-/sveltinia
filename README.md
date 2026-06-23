@@ -1,6 +1,24 @@
 # Sveltinia
 
-Sveltinia-inspired stores for Svelte and SvelteKit, with Options Stores, Setup Stores, plugins, persistence, mutation subscriptions, action hooks, SSR state transfer, and opt-in debugging.
+<p align="center">
+  <img src="apps/docs/public/logo.svg" alt="Sveltinia" width="96" height="96">
+</p>
+
+<p align="center">
+  <strong>Pinia-style stores for Svelte and SvelteKit.</strong><br>
+  Typed state, persisted stores, plugins, action hooks, mutation subscriptions, request-safe SSR.
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/sveltinia"><img alt="npm" src="https://img.shields.io/npm/v/sveltinia?style=for-the-badge&color=3f693a&labelColor=090c09"></a>
+  <a href="https://www.npmjs.com/package/sveltinia"><img alt="package managers" src="https://img.shields.io/badge/npm%20%7C%20yarn%20%7C%20pnpm%20%7C%20bun-ready-3f693a?style=for-the-badge&labelColor=090c09"></a>
+  <a href="https://svelte.dev"><img alt="Svelte 4 and 5" src="https://img.shields.io/badge/Svelte-4%20%7C%205-3f693a?style=for-the-badge&labelColor=090c09"></a>
+  <a href="https://www.typescriptlang.org"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-ready-3f693a?style=for-the-badge&labelColor=090c09"></a>
+  <a href="https://dene-.github.io/sveltinia/"><img alt="docs" src="https://img.shields.io/badge/docs-live-3f693a?style=for-the-badge&labelColor=090c09"></a>
+  <a href="https://github.com/dene-/sveltinia/actions/workflows/deploy-docs.yml"><img alt="docs build" src="https://img.shields.io/github/actions/workflow/status/dene-/sveltinia/deploy-docs.yml?style=for-the-badge&label=docs&labelColor=090c09&color=3f693a"></a>
+</p>
+
+Sveltinia gives Svelte apps the familiar ergonomics of Pinia without bringing a framework-sized abstraction. Use Options Stores, Setup Stores, plugins, persistence, mutation subscriptions, action hooks, SSR state transfer, and opt-in debugging from one small API.
 
 ## Install
 
@@ -53,4 +71,11 @@ In a Svelte component, adapt it to a Svelte readable store:
 <button onclick={() => $counter.increment()}>{$counter.count}</button>
 ```
 
-See the documentation site under `apps/docs` for API details and a SvelteKit tutorial.
+## Docs
+
+- [Documentation site](https://dene-.github.io/sveltinia/)
+- [API reference](https://dene-.github.io/sveltinia/docs/api)
+
+## Contributor
+
+Built and maintained by [dene-](https://github.com/dene-).

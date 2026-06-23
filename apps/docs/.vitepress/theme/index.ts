@@ -13,8 +13,10 @@ export default {
 
       event.preventDefault()
       event.stopImmediatePropagation()
-      const href = link.href
-      document.startViewTransition(() => router.go(href))
+      const href = link.pathname + link.search + link.hash
+      document.startViewTransition(async () => {
+        await router.go(href)
+      })
     }, true)
   }
 }
