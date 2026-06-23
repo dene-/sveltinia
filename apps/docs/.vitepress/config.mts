@@ -12,6 +12,15 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#090c09' }],
     ['meta', { name: 'author', content: 'Sveltinia' }]
   ],
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name][extname]'
+        }
+      }
+    }
+  },
   themeConfig: {
     logo: { src: '/logo.svg', alt: 'Sveltinia' },
     nav: [
