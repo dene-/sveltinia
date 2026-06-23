@@ -9,6 +9,7 @@ export default defineConfig({
   appearance: 'dark',
   sitemap: { hostname: 'https://dene-.github.io/sveltinia/' },
   head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${process.env.GITHUB_ACTIONS ? '/sveltinia' : ''}/logo.svg` }],
     ['meta', { name: 'theme-color', content: '#090c09' }],
     ['meta', { name: 'author', content: 'Sveltinia' }]
   ],
