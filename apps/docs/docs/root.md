@@ -11,27 +11,27 @@ Create one root for each application instance. Register persistence and debuggin
 import {
   createDebugPlugin,
   createPersistedState,
-  createPinia
+  createSveltinia
 } from 'sveltinia'
 
-export const pinia = createPinia({
+export const sveltinia = createSveltinia({
   debug: import.meta.env.DEV
 })
   .use(createDebugPlugin())
   .use(createPersistedState())
 ```
 
-`createPinia(options?)` accepts initial `state`, global `debug` defaults, and global `persist` defaults. Calling `pinia.use(plugin)` registers a plugin for stores created afterward and returns the same root for chaining.
+`createSveltinia(options?)` accepts initial `state`, global `debug` defaults, and global `persist` defaults. Calling `sveltinia.use(plugin)` registers a plugin for stores created afterward and returns the same root for chaining.
 
 ## Active root
 
 If a store factory is called without an explicit root, Sveltinia uses the active root:
 
 ```ts
-import { setActivePinia } from 'sveltinia'
+import { setActiveSveltinia } from 'sveltinia'
 
-setActivePinia(pinia)
+setActiveSveltinia(sveltinia)
 const cart = useCartStore()
 ```
 
-Passing the root directly is clearer in server code: `useCartStore(pinia)`.
+Passing the root directly is clearer in server code: `useCartStore(sveltinia)`.

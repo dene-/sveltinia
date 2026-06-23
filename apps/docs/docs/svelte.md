@@ -21,16 +21,44 @@ description: Connect Sveltinia stores to Svelte components and context.
 
 ## Context-based roots
 
-Call `providePinia(pinia)` in a parent component during initialization, then call `usePinia()` in descendants.
+Create the root in a normal module, provide it once near the top of the component tree, then read the same root in descendants.
+
+```ts
+// src/lib/stores/root.ts
+import { createDebugPlugin, createPersistedState, createSveltinia } from 'sveltinia'
+
+export const sveltinia = createSveltinia({
+  debug: import.meta.env.DEV
+})
+  .use(createDebugPlugin())
+  .use(createPersistedState())
+```
 
 ```svelte
-<!-- Parent.svelte -->
+<!-- src/routes/+layout.svelte -->
 <script lang="ts">
-  import { providePinia } from 'sveltinia/svelte'
-  import { pinia } from '$lib/stores/root'
+  import { provideSveltinia } from 'sveltinia/svelte'
+  import { sveltinia } from '$lib/stores/root'
 
-  providePinia(pinia)
+  provideSveltinia(sveltinia)
 </script>
+
+<slot />
+```
+
+Descendant components can then read the context root and pass it to store factories:
+
+```svelte
+<!-- CartSummary.svelte -->
+<script lang="ts">
+  import { useStore, useSveltinia } from 'sveltinia/svelte'
+  import { useCartStore } from '$lib/stores/cart'
+
+  const sveltinia = useSveltinia()
+  const cart = useStore(useCartStore(sveltinia))
+</script>
+
+<p>Total: {$cart.total}</p>
 ```
 
 `toSvelteStore(store)` and `useStore(store)` are equivalent; the second name reads more naturally in components.

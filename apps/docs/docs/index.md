@@ -9,7 +9,7 @@ head:
 
 # Sveltinia documentation
 
-Typed, Pinia-inspired stores for Svelte and SvelteKit. Follow the guides in order or jump directly to the topic you need.
+Typed stores for Svelte and SvelteKit. Follow the guides in order or jump directly to the topic you need.
 
 ## Start here
 

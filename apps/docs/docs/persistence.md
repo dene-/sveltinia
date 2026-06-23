@@ -8,11 +8,13 @@ description: Build versioned persisted Svelte stores with browser or custom stor
 Persistence is disabled until a store opts in and the persistence plugin is installed. Browser storage is never accessed on the server.
 
 ```ts
+import { browserStorage } from 'sveltinia'
+
 export const useCartStore = defineStore('cart', {
   state: () => ({ items: [], bannerDismissed: false }),
   persist: {
     key: 'app:cart',
-    storage: 'localStorage',
+    storage: browserStorage('localStorage'),
     paths: ['items'],
     version: 2,
     migrate(state, fromVersion) {
@@ -28,7 +30,7 @@ export const useCartStore = defineStore('cart', {
 | --- | --- |
 | `enabled` | Explicitly enable or disable persistence |
 | `key` | Storage key; defaults to `sveltinia:<store-id>` |
-| `storage` | `localStorage`, `sessionStorage`, or a custom adapter |
+| `storage` | `browserStorage('localStorage')`, `browserStorage('sessionStorage')`, or a custom adapter |
 | `paths` | Persist only selected dot-separated state paths |
 | `version` | Version saved with the state envelope |
 | `migrate` | Transform older state; may return a promise |
@@ -50,6 +52,30 @@ const storage: StorageAdapter = {
 }
 ```
 
-`browserStorage('localStorage' | 'sessionStorage')` returns the requested browser storage adapter, or `undefined` during SSR.
+`browserStorage('localStorage' | 'sessionStorage')` returns the requested browser storage adapter, or `undefined` during SSR. This avoids typo-prone storage strings in store definitions.
+
+## Custom serializer
+
+The default serializer writes JSON. Use `serializer` when persisted data needs a different envelope format:
+
+```ts
+const base64Json = {
+  serialize(value: unknown) {
+    return btoa(JSON.stringify(value))
+  },
+  deserialize(value: string) {
+    return JSON.parse(atob(value))
+  }
+}
+
+export const useSessionStore = defineStore('session', {
+  state: () => ({ token: '', userId: '' }),
+  persist: {
+    key: 'app:session',
+    storage: browserStorage('sessionStorage'),
+    serializer: base64Json
+  }
+})
+```
 
 The plugin restores automatically when a store is created. Use `await store.$restore()` when timing must be deterministic. Use `await store.$persist()` to force a write.

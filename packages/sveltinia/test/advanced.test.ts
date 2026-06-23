@@ -12,6 +12,11 @@ describe('advanced features', () => {
     const sveltinia = createSveltinia(); sveltinia.use(createPersistedState()); const useCart = defineStore('cart', { state: () => ({ items: [] as string[], transient: 1 }), persist: { storage, paths: ['items'] } })
     const cart = useCart(sveltinia); await cart.$restore(); expect(cart.items).toEqual(['a']); cart.items.push('b'); await cart.$persist(); expect(JSON.parse(data.get('sveltinia:cart')!).state).toEqual({ items: ['a','b'] })
   })
+  it('rejects unsupported persistence storage names', () => {
+    const sveltinia = createSveltinia(); sveltinia.use(createPersistedState())
+    const useCart = defineStore('cart', { state: () => ({ items: [] as string[] }), persist: { storage: 'localstorage' as 'localStorage' } })
+    expect(() => useCart(sveltinia)).toThrow('Unsupported persistence storage "localstorage"')
+  })
   it('sends structured debug events', () => {
     const logger = vi.fn(); const sveltinia = createSveltinia({ debug: { enabled: true, logger } }); sveltinia.use(createDebugPlugin())
     const useA = defineStore('a', { state: () => ({ x: 1 }), actions: { set() { this.x = 2 } } }); useA(sveltinia).set()

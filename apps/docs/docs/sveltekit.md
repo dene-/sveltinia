@@ -9,9 +9,9 @@ Use one root per server request. Never keep a server-side root in module scope.
 
 ```ts
 // src/lib/stores/adapter.ts
-import { createSvelteKitPinia } from 'sveltinia/sveltekit'
+import { createSvelteKitSveltinia } from 'sveltinia/sveltekit'
 
-export const stores = createSvelteKitPinia({
+export const stores = createSvelteKitSveltinia({
   debug: import.meta.env.DEV
 })
 ```
@@ -22,13 +22,13 @@ Create and serialize the root in server-side load code:
 
 ```ts
 export async function load() {
-  const pinia = stores.create()
-  const cart = useCartStore(pinia)
+  const sveltinia = stores.create()
+  const cart = useCartStore(sveltinia)
 
   await cart.$restore()
 
   return {
-    initialStoreState: stores.serialize(pinia)
+    initialStoreState: stores.serialize(sveltinia)
   }
 }
 ```
@@ -38,7 +38,7 @@ export async function load() {
 Create the client root from page data before reading stores:
 
 ```ts
-const pinia = stores.create(data.initialStoreState)
+const sveltinia = stores.create(data.initialStoreState)
 ```
 
 ## Adapter methods
@@ -46,5 +46,5 @@ const pinia = stores.create(data.initialStoreState)
 | Method | Behavior |
 | --- | --- |
 | `create(serialized?)` | Creates a root, installs first-party persistence/debug plugins, activates it, and optionally seeds state |
-| `serialize(pinia)` | Returns a cloned plain state object |
-| `hydrate(pinia, state)` | Clones incoming state into the root and patches stores that already exist |
+| `serialize(sveltinia)` | Returns a cloned plain state object |
+| `hydrate(sveltinia, state)` | Clones incoming state into the root and patches stores that already exist |

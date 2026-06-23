@@ -9,10 +9,10 @@ description: Complete Sveltinia core, Svelte, SvelteKit, store, and type API ref
 
 | Export | Signature | Returns |
 | --- | --- | --- |
-| `createPinia` | `(options?: PiniaOptions)` | A new isolated `Pinia` root |
+| `createSveltinia` | `(options?: SveltiniaOptions)` | A new isolated `Sveltinia` root |
 | `defineStore` | `(id, options)` or `(id, setup, options?)` | A store factory accepting an optional root |
-| `setActivePinia` | `(pinia?: Pinia)` | The assigned root or `undefined` |
-| `getActivePinia` | `()` | The active root or `undefined` |
+| `setActiveSveltinia` | `(sveltinia?: Sveltinia)` | Sets the active root |
+| `getActiveSveltinia` | `()` | The active root or `undefined` |
 | `state` | `<T>(value: T)` | A mutable `SetupCell<T>` |
 | `computed` | `<T>(fn: () => T)` | A read-only `ComputedCell<T>` |
 | `createPersistedState` | `(defaults?: PersistOptions)` | A Sveltinia plugin |
@@ -23,15 +23,15 @@ description: Complete Sveltinia core, Svelte, SvelteKit, store, and type API ref
 
 | Export | Purpose |
 | --- | --- |
-| `PINIA_CONTEXT` | Shared Svelte context symbol |
-| `providePinia(pinia)` | Activates the root, adds it to Svelte context, and returns it |
-| `usePinia()` | Reads the root from Svelte context |
+| `SVELTINIA_CONTEXT` | Shared Svelte context symbol |
+| `provideSveltinia(sveltinia)` | Activates the root, adds it to Svelte context, and returns it |
+| `useSveltinia()` | Reads the root from Svelte context |
 | `toSvelteStore(store)` | Wraps a store as `Readable<T>` |
 | `useStore(store)` | Alias of `toSvelteStore` |
 
 ## SvelteKit function
 
-`createSvelteKitPinia(options?)` returns the `create`, `serialize`, and `hydrate` adapter described in [SvelteKit SSR](/docs/sveltekit).
+`createSvelteKitSveltinia(options?)` returns the `create`, `serialize`, and `hydrate` adapter described in [SvelteKit SSR](/docs/sveltekit).
 
 ## Store properties and methods
 
@@ -49,6 +49,6 @@ description: Complete Sveltinia core, Svelte, SvelteKit, store, and type API ref
 
 ## Public types
 
-`StateTree`, `MutationType`, `Mutation`, `SubscriptionOptions`, `Subscription`, `ActionContext`, `ActionSubscription`, `StorageAdapter`, `PersistOptions`, `DebugEvent`, `DebugOptions`, `PiniaOptions`, `DefineStoreOptions`, `SetupCell`, `ComputedCell`, `SetupStore`, `Store`, and `Pinia` are exported from `sveltinia`.
+`StateTree`, `MutationType`, `Mutation`, `Subscription`, `ActionContext`, `ActionSubscription`, `StorageAdapter`, `PersistOptions`, `DebugEvent`, `DebugOptions`, `SveltiniaOptions`, `DefineStoreOptions`, `SetupCell`, `ComputedCell`, `SetupStore`, `Store`, and `Sveltinia` are exported from `sveltinia`.
 
 Use these types for adapters and extension points; ordinary stores are inferred from `defineStore`.

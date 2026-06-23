@@ -39,6 +39,10 @@ function resolvePersistConfig(
 
 function resolveStorage(config: PersistOptions): StorageAdapter | undefined {
   if (typeof config.storage === 'object') return config.storage
+  if (config.storage !== undefined && config.storage !== 'localStorage' && config.storage !== 'sessionStorage')
+    throw new Error(
+      `Unsupported persistence storage "${config.storage}". Use browserStorage('localStorage'), browserStorage('sessionStorage'), or a custom adapter.`,
+    )
   return browserStorage(config.storage ?? 'localStorage')
 }
 

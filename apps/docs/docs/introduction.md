@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: Understand Sveltinia package entry points and its Pinia-inspired store model.
+description: Understand Sveltinia package entry points and store model.
 ---
 
 # Introduction
@@ -13,7 +13,7 @@ Sveltinia has three entry points:
 | `sveltinia/svelte` | Svelte context and readable-store adapters |
 | `sveltinia/sveltekit` | Request-scoped roots, serialization, and hydration |
 
-An application creates a **Pinia root** and defines one or more store factories. Calling a factory returns one store instance per root and store ID.
+An application creates a **Sveltinia root** and defines one or more store factories. Calling a factory returns one store instance per root and store ID.
 
 ## Next step
 

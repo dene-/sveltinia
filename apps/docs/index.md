@@ -76,14 +76,14 @@ const installCommands: Record<PackageManager, string> = {
   <section class="landing-section" aria-labelledby="built-for-svelte">
     <div class="landing__inner">
       <div class="section-head">
-        <h2 id="built-for-svelte">The Svelte Pinia experience, minus the translation layer.</h2>
+        <h2 id="built-for-svelte">State management that feels native in Svelte.</h2>
         <p>Use Options Stores when you want structure. Use Setup Stores when composition reads better. Both produce the same small, typed store API.</p>
       </div>
       <div class="feature-list">
         <article class="feature">
           <span class="feature__number">01</span>
           <h3>Two store styles</h3>
-          <p>Choose Pinia-shaped state, getters, and actions or compose stores from <code>state()</code>, <code>computed()</code>, and ordinary functions.</p>
+          <p>Choose structured state, getters, and actions or compose stores from <code>state()</code>, <code>computed()</code>, and ordinary functions.</p>
         </article>
         <article class="feature">
           <span class="feature__number">02</span>
@@ -108,7 +108,7 @@ const installCommands: Record<PackageManager, string> = {
     <div class="landing__inner">
       <div class="section-head">
         <h2 id="ssr-title">SvelteKit SSR state management without shared server state.</h2>
-        <p>The SvelteKit Pinia adapter makes the safe path explicit: create one root per request, serialize its state, then hydrate a fresh client root.</p>
+        <p>The SvelteKit adapter makes the safe path explicit: create one Sveltinia root per request, serialize its state, then hydrate a fresh client root.</p>
       </div>
       <div class="ssr-flow">
         <article class="ssr-step"><strong>01 / CREATE</strong><h3>Request-scoped root</h3><p>Create an isolated store container inside server load or request handling.</p></article>

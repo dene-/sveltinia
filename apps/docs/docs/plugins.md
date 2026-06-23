@@ -5,10 +5,10 @@ description: Extend Sveltinia stores and manage their lifecycle.
 
 # Plugins and lifecycle
 
-A plugin receives `{ pinia, store, options }`. It may mutate the store directly or return properties to assign to it.
+A plugin receives `{ sveltinia, store, options }`. It may mutate the store directly or return properties to assign to it.
 
 ```ts
-pinia.use(({ store }) => ({
+sveltinia.use(({ store }) => ({
   createdAt: Date.now(),
   label: `Store: ${store.$id}`
 }))
@@ -16,8 +16,8 @@ pinia.use(({ store }) => ({
 
 ## Dispose stores
 
-`store.$dispose()` clears its subscriptions and unregisters it from the root. `pinia.dispose()` disposes every store and clears the root. Disposing is useful for tests, temporary application roots, and request cleanup.
+`store.$dispose()` clears its subscriptions and unregisters it from the root. `sveltinia.dispose()` disposes every store and clears the root. Disposing is useful for tests, temporary application roots, and request cleanup.
 
 ## Install the root
 
-`pinia.install(app?)` activates the root and calls `app.provide('sveltinia', pinia)` when the host app exposes `provide`.
+`sveltinia.install(app?)` activates the root and calls `app.provide('sveltinia', sveltinia)` when the host app exposes `provide`.

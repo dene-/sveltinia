@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>Pinia-style stores for Svelte and SvelteKit.</strong><br>
+  <strong>Sveltinia stores for Svelte and SvelteKit.</strong><br>
   Typed state, persisted stores, plugins, action hooks, mutation subscriptions, request-safe SSR.
 </p>
 

@@ -8,7 +8,7 @@ description: Add structured and redactable diagnostics to Sveltinia stores.
 Enable structured diagnostics at the root and register the plugin:
 
 ```ts
-const pinia = createPinia({
+const sveltinia = createSveltinia({
   debug: {
     enabled: true,
     redact: ['session.token'],
