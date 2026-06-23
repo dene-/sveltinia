@@ -25,6 +25,7 @@ head:
 ---
 
 <script setup lang="ts">
+import { withBase } from 'vitepress'
 import { ref } from 'vue'
 
 type PackageManager = 'npm' | 'yarn' | 'pnpm' | 'bun'
@@ -43,7 +44,7 @@ const installCommands: Record<PackageManager, string> = {
       <h1 id="hero-title">Svelte state management, with the ergonomics of <em>Pinia.</em></h1>
       <p class="hero__lede">Sveltinia is a typed Pinia alternative for Svelte: familiar stores, predictable actions, diagnostics, and request-safe SvelteKit SSR without a framework-sized abstraction.</p>
       <div class="hero__actions">
-        <a class="button button--primary" href="./docs/">Read the docs →</a>
+        <a class="button button--primary" :href="withBase('/docs/')">Read the docs →</a>
         <a class="button" href="https://github.com/dene-/sveltinia">View on GitHub</a>
       </div>
       <div class="package-install">
@@ -122,7 +123,7 @@ const installCommands: Record<PackageManager, string> = {
     <div class="landing__inner">
       <h2 id="cta-title">Small API. Complete state lifecycle.</h2>
       <p>Start with one store and add persistence, diagnostics, or SSR only when the application needs them.</p>
-      <a class="button button--primary" href="./docs/api.html">API reference →</a>
+      <a class="button button--primary" :href="withBase('/docs/api.html')">API reference →</a>
     </div>
   </section>
 </main>
