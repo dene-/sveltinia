@@ -6,7 +6,7 @@ description: Define Sveltinia stores with state, getters, and actions.
 # Options Stores
 
 An Options Store keeps state, derived values, and actions in named sections.
-The object returned by `state()` is converted to Svelte 5 `$state` internally.
+The object returned by `state()` is tracked by Sveltinia and exposed as store properties.
 
 ```ts
 import { defineStore } from 'sveltinia'
@@ -36,4 +36,4 @@ export const useCartStore = defineStore('cart', {
 
 ## Store factory
 
-`defineStore(id, options)` returns a factory. The `id` must be unique within a root. `state` must return fresh data. Getters receive rune-backed state and can use the store as `this`; actions use the store as `this` and may be synchronous or asynchronous.
+`defineStore(id, options)` returns a factory. The `id` must be unique within a root. `state` must return fresh data. Getters receive the current state and can use the store as `this`; actions use the store as `this` and may be synchronous or asynchronous.

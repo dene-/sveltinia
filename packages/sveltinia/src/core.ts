@@ -1,6 +1,6 @@
 import { createStore } from './internal/store-factory.js'
 import { SVELTINIA_PROVISION_KEY, CELL_KIND } from './internal/constants.js'
-import { clone } from './internal/reactivity.svelte.js'
+import { clone } from './internal/reactivity.js'
 import type {
   App,
   ComputedCell,

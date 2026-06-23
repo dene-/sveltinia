@@ -5,7 +5,7 @@ description: Compose Sveltinia stores with state cells, computed values, and fun
 
 # Setup Stores
 
-A Setup Store uses small primitives instead of option groups. Return `state()` cells for reactive state, `computed()` cells for derived values, and functions for actions. Sveltinia binds those state cells to the same Svelte 5 `$state` runtime used by Options Stores.
+A Setup Store uses small primitives instead of option groups. Return `state()` cells for reactive state, `computed()` cells for derived values, and functions for actions.
 
 ```ts
 import { computed, defineStore, state } from 'sveltinia'

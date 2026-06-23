@@ -1,6 +1,6 @@
 import { instrumentAction } from './action.js'
 import { CELL_KIND, DEBUG_KIND, MUTATION_TYPE } from './constants.js'
-import { clone, makeObservable, merge } from './reactivity.svelte.js'
+import { clone, makeObservable, merge } from './reactivity.js'
 import { defaultClock, noopDebugEmitter, type Clock } from './util.js'
 import type {
   ActionSubscription,

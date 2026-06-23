@@ -1,4 +1,4 @@
-import { clone, merge } from '../internal/reactivity.svelte.js'
+import { clone, merge } from '../internal/reactivity.js'
 import {
   DEBUG_KIND,
   DEFAULT_PERSIST_VERSION,
