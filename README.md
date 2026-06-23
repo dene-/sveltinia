@@ -12,7 +12,7 @@
 <p align="center">
   <img alt="package status" src="https://img.shields.io/badge/npm-publish%20pending-3f693a?style=for-the-badge&labelColor=090c09">
   <img alt="package managers" src="https://img.shields.io/badge/npm%20%7C%20yarn%20%7C%20pnpm%20%7C%20bun-planned-3f693a?style=for-the-badge&labelColor=090c09">
-  <a href="https://svelte.dev"><img alt="Svelte 4 and 5" src="https://img.shields.io/badge/Svelte-4%20%7C%205-3f693a?style=for-the-badge&labelColor=090c09"></a>
+  <a href="https://svelte.dev"><img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-3f693a?style=for-the-badge&labelColor=090c09"></a>
   <a href="https://www.typescriptlang.org"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-ready-3f693a?style=for-the-badge&labelColor=090c09"></a>
   <a href="https://dene-.github.io/sveltinia/"><img alt="docs" src="https://img.shields.io/badge/docs-live-3f693a?style=for-the-badge&labelColor=090c09"></a>
   <a href="https://github.com/dene-/sveltinia/actions/workflows/deploy-docs.yml"><img alt="docs build" src="https://img.shields.io/github/actions/workflow/status/dene-/sveltinia/deploy-docs.yml?style=for-the-badge&label=docs&labelColor=090c09&color=3f693a"></a>
@@ -66,11 +66,12 @@ In a Svelte component, adapt it to a Svelte readable store:
 ```svelte
 <script lang="ts">
   import { useStore } from 'sveltinia/svelte'
+  import { fromStore } from 'svelte/store'
   import { useCounter } from '$lib/stores/counter'
-  const counter = useStore(useCounter())
+  const counter = fromStore(useStore(useCounter()))
 </script>
 
-<button onclick={() => $counter.increment()}>{$counter.count}</button>
+<button onclick={() => counter.current.increment()}>{counter.current.count}</button>
 ```
 
 ## Docs

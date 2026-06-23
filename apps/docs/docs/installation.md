@@ -25,7 +25,7 @@ bun add sveltinia
 
 :::
 
-Choose whichever package manager your project already uses. Sveltinia supports Svelte 4 and Svelte 5.
+Choose whichever package manager your project already uses. Sveltinia supports Svelte 5.40 and newer.
 
 ## Next step
 

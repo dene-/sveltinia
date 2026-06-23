@@ -23,7 +23,6 @@ description: Complete Sveltinia core, Svelte, SvelteKit, store, and type API ref
 
 | Export | Purpose |
 | --- | --- |
-| `SVELTINIA_CONTEXT` | Shared Svelte context symbol |
 | `provideSveltinia(sveltinia)` | Activates the root, adds it to Svelte context, and returns it |
 | `useSveltinia()` | Reads the root from Svelte context |
 | `toSvelteStore(store)` | Wraps a store as `Readable<T>` |

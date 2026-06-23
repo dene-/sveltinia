@@ -29,11 +29,12 @@ In components, convert a Sveltinia store into a Svelte readable store.
 ```svelte
 <script lang="ts">
   import { useStore } from 'sveltinia/svelte'
-  const cart = useStore(useCartStore(sveltinia))
+  import { fromStore } from 'svelte/store'
+  const cart = fromStore(useStore(useCartStore(sveltinia)))
 </script>
 
-<p>{$cart.total}</p>
-<button onclick={() => $cart.clear()}>Clear</button>
+<p>{cart.current.total}</p>
+<button onclick={() => cart.current.clear()}>Clear</button>
 ```
 
 Use one root for each SSR request. Never retain a server-side root in module scope.

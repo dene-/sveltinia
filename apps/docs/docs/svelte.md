@@ -5,18 +5,19 @@ description: Connect Sveltinia stores to Svelte components and context.
 
 # Use in Svelte
 
-`useStore()` converts a Sveltinia store to a standard Svelte readable store. Mutations trigger readable-store updates.
+`useStore()` converts a Sveltinia store to a standard Svelte readable store. In Svelte 5 components, wrap that readable with `fromStore()` so template reads use ordinary rune-mode expressions.
 
 ```svelte
 <script lang="ts">
   import { useStore } from 'sveltinia/svelte'
+  import { fromStore } from 'svelte/store'
   import { useCartStore } from '$lib/stores/cart'
 
-  const cart = useStore(useCartStore())
+  const cart = fromStore(useStore(useCartStore()))
 </script>
 
-<p>Total: {$cart.total}</p>
-<button onclick={() => $cart.clear()}>Clear cart</button>
+<p>Total: {cart.current.total}</p>
+<button onclick={() => cart.current.clear()}>Clear cart</button>
 ```
 
 ## Context-based roots
@@ -40,10 +41,11 @@ export const sveltinia = createSveltinia({
   import { provideSveltinia } from 'sveltinia/svelte'
   import { sveltinia } from '$lib/stores/root'
 
+  let { children } = $props()
   provideSveltinia(sveltinia)
 </script>
 
-<slot />
+{@render children()}
 ```
 
 Descendant components can then read the context root and pass it to store factories:
@@ -52,13 +54,14 @@ Descendant components can then read the context root and pass it to store factor
 <!-- CartSummary.svelte -->
 <script lang="ts">
   import { useStore, useSveltinia } from 'sveltinia/svelte'
+  import { fromStore } from 'svelte/store'
   import { useCartStore } from '$lib/stores/cart'
 
   const sveltinia = useSveltinia()
-  const cart = useStore(useCartStore(sveltinia))
+  const cart = fromStore(useStore(useCartStore(sveltinia)))
 </script>
 
-<p>Total: {$cart.total}</p>
+<p>Total: {cart.current.total}</p>
 ```
 
 `toSvelteStore(store)` and `useStore(store)` are equivalent; the second name reads more naturally in components.

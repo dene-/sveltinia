@@ -1,21 +1,17 @@
 import { readable, type Readable } from 'svelte/store'
-import { getContext, setContext } from 'svelte'
+import { createContext } from 'svelte'
 import { setActiveSveltinia } from '../core.js'
-import { SVELTINIA_PROVISION_KEY } from '../internal/constants.js'
 import type { Sveltinia, Store } from '../internal/types.js'
 
-// Private symbol derived from the provision key. Private (non-`for`) symbols
-// isolate context between coexisting sveltinia versions in the same app;
-// `provideSveltinia`/`useSveltinia` share it via this module.
-export const SVELTINIA_CONTEXT = Symbol(SVELTINIA_PROVISION_KEY)
+const [getSveltiniaContext, setSveltiniaContext] = createContext<Sveltinia>()
 
 export const provideSveltinia = (sveltinia: Sveltinia): Sveltinia => {
   setActiveSveltinia(sveltinia)
-  setContext(SVELTINIA_CONTEXT, sveltinia)
+  setSveltiniaContext(sveltinia)
   return sveltinia
 }
 
-export const useSveltinia = (): Sveltinia => getContext<Sveltinia>(SVELTINIA_CONTEXT)
+export const useSveltinia = (): Sveltinia => getSveltiniaContext()
 
 // Module-level cache keyed by store identity. `useStore(sameStore)` returns
 // the same readable across calls, avoiding duplicate subscriptions. Stores

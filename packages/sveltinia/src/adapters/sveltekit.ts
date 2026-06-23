@@ -24,5 +24,3 @@ export function createSveltinia(
     },
   }
 }
-
-export { createSveltinia as createSvelteKitSveltinia }
