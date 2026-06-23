@@ -78,6 +78,15 @@ In a Svelte component, adapt it to a Svelte readable store:
 
 - [Documentation site](https://dene-.github.io/sveltinia/)
 
+## Release
+
+```bash
+yarn publish:dry
+yarn publish:npm
+```
+
+Update `packages/sveltinia/package.json` before publishing. Published npm versions are immutable.
+
 ## Contributor
 
 Built and maintained by [dene-](https://github.com/dene-).

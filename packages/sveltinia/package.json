@@ -1,9 +1,14 @@
 {
   "name": "sveltinia",
   "version": "0.1.0",
-  "description": "Sveltinia stores for Svelte and SvelteKit",
-  "license": "UNLICENSED",
+  "description": "Typed stores for Svelte and SvelteKit",
+  "license": "MIT",
   "type": "module",
+  "sideEffects": false,
+  "homepage": "https://dene-.github.io/sveltinia/",
+  "repository": {"type":"git","url":"git+https://github.com/dene-/sveltinia.git","directory":"packages/sveltinia"},
+  "bugs": {"url":"https://github.com/dene-/sveltinia/issues"},
+  "keywords": ["svelte", "sveltekit", "state-management", "stores", "pinia", "persistence", "ssr"],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -13,7 +18,8 @@
     "./persist": {"types":"./dist/plugins/persist.d.ts","default":"./dist/plugins/persist.js"},
     "./debug": {"types":"./dist/plugins/debug.d.ts","default":"./dist/plugins/debug.js"}
   },
-  "files": ["dist", "README.md"],
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {"access":"public"},
   "scripts": {"build":"node ../../scripts/clean-dir.mjs dist && tsc -p tsconfig.json"},
   "peerDependencies": {"svelte":">=5.40.0 <6"}
 }

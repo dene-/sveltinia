@@ -1,7 +1,7 @@
 {
   "name": "sveltinia-monorepo",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "workspaces": [
     "packages/*"
@@ -12,7 +12,9 @@
     "typecheck": "tsc -p packages/sveltinia/tsconfig.json --noEmit",
     "build": "yarn typecheck && yarn workspace sveltinia build && yarn docs:build",
     "docs:dev": "vitepress dev apps/docs",
-    "docs:build": "vitepress build apps/docs"
+    "docs:build": "vitepress build apps/docs",
+    "publish:dry": "yarn build && npm publish ./packages/sveltinia --access public --registry https://registry.npmjs.org --dry-run",
+    "publish:npm": "yarn build && npm publish ./packages/sveltinia --access public --registry https://registry.npmjs.org"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

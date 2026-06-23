@@ -80,6 +80,10 @@ In a Svelte component, adapt it to a Svelte readable store:
 - [Documentation site](https://dene-.github.io/sveltinia/)
 - [GitHub repository](https://github.com/dene-/sveltinia)
 
+## License
+
+MIT
+
 ## Contributor
 
 Built and maintained by [dene-](https://github.com/dene-).
