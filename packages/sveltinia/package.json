@@ -8,7 +8,7 @@
   "homepage": "https://dene-.github.io/sveltinia/",
   "repository": {"type":"git","url":"git+https://github.com/dene-/sveltinia.git","directory":"packages/sveltinia"},
   "bugs": {"url":"https://github.com/dene-/sveltinia/issues"},
-  "keywords": ["svelte", "sveltekit", "state-management", "stores", "pinia", "persistence", "ssr"],
+  "keywords": ["svelte", "svelte5", "sveltekit", "svelte-pinia", "sveltekit-pinia", "pinia", "pinia-alternative", "state-management", "svelte-state-management", "svelte-stores", "persisted-stores", "persisted-svelte-stores", "ssr", "sveltekit-ssr"],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

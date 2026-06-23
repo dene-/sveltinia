@@ -10,15 +10,17 @@
 </p>
 
 <p align="center">
-  <img alt="package status" src="https://img.shields.io/badge/npm-publish%20pending-3f693a?style=for-the-badge&labelColor=090c09">
-  <img alt="package managers" src="https://img.shields.io/badge/npm%20%7C%20yarn%20%7C%20pnpm%20%7C%20bun-planned-3f693a?style=for-the-badge&labelColor=090c09">
+  <a href="https://www.npmjs.com/package/sveltinia"><img alt="npm" src="https://img.shields.io/npm/v/sveltinia?style=for-the-badge&labelColor=090c09&color=3f693a"></a>
+  <img alt="package managers" src="https://img.shields.io/badge/npm%20%7C%20yarn%20%7C%20pnpm%20%7C%20bun-ready-3f693a?style=for-the-badge&labelColor=090c09">
   <a href="https://svelte.dev"><img alt="Svelte 5" src="https://img.shields.io/badge/Svelte-5-3f693a?style=for-the-badge&labelColor=090c09"></a>
   <a href="https://www.typescriptlang.org"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-ready-3f693a?style=for-the-badge&labelColor=090c09"></a>
   <a href="https://dene-.github.io/sveltinia/"><img alt="docs" src="https://img.shields.io/badge/docs-live-3f693a?style=for-the-badge&labelColor=090c09"></a>
   <a href="https://github.com/dene-/sveltinia/actions/workflows/deploy-docs.yml"><img alt="docs build" src="https://img.shields.io/github/actions/workflow/status/dene-/sveltinia/deploy-docs.yml?style=for-the-badge&label=docs&labelColor=090c09&color=3f693a"></a>
 </p>
 
-Sveltinia gives Svelte apps the familiar ergonomics of Pinia without bringing a framework-sized abstraction. The public API stays small: Options Stores, Setup Stores, plugins, persistence, mutation subscriptions, action hooks, SSR state transfer, and opt-in debugging.
+Sveltinia is a Svelte 5 state management library inspired by Pinia. It provides typed stores for Svelte and SvelteKit, persisted Svelte stores, action hooks, mutation subscriptions, plugins, and request-safe SvelteKit SSR state management.
+
+Use it when you want a Pinia alternative for Svelte, familiar SvelteKit Pinia-style ergonomics, or a small store API without a framework-sized abstraction.
 
 ## Install
 
