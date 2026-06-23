@@ -5,7 +5,7 @@ export default defineConfig({
   titleTemplate: ':title — Sveltinia',
   description: 'A typed Pinia alternative for Svelte with persisted stores and request-safe SvelteKit SSR state management.',
   base: process.env.GITHUB_ACTIONS ? '/sveltinia/' : '/',
-  cleanUrls: true,
+  cleanUrls: false,
   appearance: 'dark',
   sitemap: { hostname: 'https://dene-.github.io/sveltinia/' },
   head: [

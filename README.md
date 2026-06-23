@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/sveltinia"><img alt="npm" src="https://img.shields.io/npm/v/sveltinia?style=for-the-badge&color=3f693a&labelColor=090c09"></a>
-  <a href="https://www.npmjs.com/package/sveltinia"><img alt="package managers" src="https://img.shields.io/badge/npm%20%7C%20yarn%20%7C%20pnpm%20%7C%20bun-ready-3f693a?style=for-the-badge&labelColor=090c09"></a>
+  <img alt="package status" src="https://img.shields.io/badge/npm-publish%20pending-3f693a?style=for-the-badge&labelColor=090c09">
+  <img alt="package managers" src="https://img.shields.io/badge/npm%20%7C%20yarn%20%7C%20pnpm%20%7C%20bun-planned-3f693a?style=for-the-badge&labelColor=090c09">
   <a href="https://svelte.dev"><img alt="Svelte 4 and 5" src="https://img.shields.io/badge/Svelte-4%20%7C%205-3f693a?style=for-the-badge&labelColor=090c09"></a>
   <a href="https://www.typescriptlang.org"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-ready-3f693a?style=for-the-badge&labelColor=090c09"></a>
   <a href="https://dene-.github.io/sveltinia/"><img alt="docs" src="https://img.shields.io/badge/docs-live-3f693a?style=for-the-badge&labelColor=090c09"></a>
@@ -21,6 +21,8 @@
 Sveltinia gives Svelte apps the familiar ergonomics of Pinia without bringing a framework-sized abstraction. Use Options Stores, Setup Stores, plugins, persistence, mutation subscriptions, action hooks, SSR state transfer, and opt-in debugging from one small API.
 
 ## Install
+
+The package is not published to npm yet. Once it is published, install it with whichever package manager your project already uses:
 
 ```bash
 npm install sveltinia
@@ -74,7 +76,6 @@ In a Svelte component, adapt it to a Svelte readable store:
 ## Docs
 
 - [Documentation site](https://dene-.github.io/sveltinia/)
-- [API reference](https://dene-.github.io/sveltinia/docs/api)
 
 ## Contributor
 
