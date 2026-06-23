@@ -15,6 +15,8 @@ Sveltinia has three entry points:
 
 An application creates a **Sveltinia root** and defines one or more store factories. Calling a factory returns one store instance per root and store ID.
 
+Store state is backed by Svelte 5 `$state` inside Sveltinia’s `.svelte.ts` runtime module. Your store definition files can stay ordinary `.ts` files unless you want to use Svelte runes directly in your own app code.
+
 ## Next step
 
 [Install Sveltinia](/docs/installation), then [create the root](/docs/root).

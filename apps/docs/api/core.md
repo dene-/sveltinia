@@ -6,11 +6,11 @@ Creates an isolated store root. `state` seeds hydration state. `debug` and `pers
 
 ## `defineStore(id, options)`
 
-Creates an Options Store factory. Options include `state`, `getters`, `actions`, `persist`, and `debug`.
+Creates an Options Store factory. Options include `state`, `getters`, `actions`, `persist`, and `debug`. Store state is converted to Svelte 5 `$state` when the store instance is created.
 
 ## `defineStore(id, setup, options?)`
 
-Creates a Setup Store factory. Return `state()` cells for state, `computed()` cells for getters, and functions for actions.
+Creates a Setup Store factory. Return `state()` cells for state, `computed()` cells for getters, and functions for actions. State cells are bound to Svelte 5 `$state` when the store instance is created.
 
 ## Store methods
 

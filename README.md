@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Sveltinia stores for Svelte and SvelteKit.</strong><br>
-  Typed state, persisted stores, plugins, action hooks, mutation subscriptions, request-safe SSR.
+  Rune-backed state, persisted stores, plugins, action hooks, mutation subscriptions, request-safe SSR.
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
   <a href="https://github.com/dene-/sveltinia/actions/workflows/deploy-docs.yml"><img alt="docs build" src="https://img.shields.io/github/actions/workflow/status/dene-/sveltinia/deploy-docs.yml?style=for-the-badge&label=docs&labelColor=090c09&color=3f693a"></a>
 </p>
 
-Sveltinia gives Svelte apps the familiar ergonomics of Pinia without bringing a framework-sized abstraction. Use Options Stores, Setup Stores, plugins, persistence, mutation subscriptions, action hooks, SSR state transfer, and opt-in debugging from one small API.
+Sveltinia gives Svelte apps the familiar ergonomics of Pinia without bringing a framework-sized abstraction. Store state is backed by Svelte 5 runes, while the public API stays small: Options Stores, Setup Stores, plugins, persistence, mutation subscriptions, action hooks, SSR state transfer, and opt-in debugging.
 
 ## Install
 

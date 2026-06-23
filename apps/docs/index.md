@@ -41,7 +41,7 @@ const installCommands: Record<PackageManager, string> = {
   <section class="hero landing__inner" aria-labelledby="hero-title">
     <div>
       <h1 id="hero-title">Svelte state management, with the ergonomics of <em>Pinia.</em></h1>
-      <p class="hero__lede">Sveltinia is a typed Pinia alternative for Svelte: familiar stores, predictable actions, persisted state, diagnostics, and request-safe SvelteKit SSR without a framework-sized abstraction.</p>
+      <p class="hero__lede">Sveltinia is a typed Pinia alternative for Svelte: familiar stores, predictable actions, rune-backed state, diagnostics, and request-safe SvelteKit SSR without a framework-sized abstraction.</p>
       <div class="hero__actions">
         <a class="button button--primary" href="./docs/">Read the docs →</a>
         <a class="button" href="https://github.com/dene-/sveltinia">View on GitHub</a>
@@ -77,7 +77,7 @@ const installCommands: Record<PackageManager, string> = {
     <div class="landing__inner">
       <div class="section-head">
         <h2 id="built-for-svelte">State management that feels native in Svelte.</h2>
-        <p>Use Options Stores when you want structure. Use Setup Stores when composition reads better. Both produce the same small, typed store API.</p>
+        <p>Use Options Stores when you want structure. Use Setup Stores when composition reads better. Both produce the same small, typed, Svelte 5 rune-backed store API.</p>
       </div>
       <div class="feature-list">
         <article class="feature">
@@ -98,7 +98,7 @@ const installCommands: Record<PackageManager, string> = {
         <article class="feature">
           <span class="feature__number">04</span>
           <h3>Svelte-native bridge</h3>
-          <p>Expose any Sveltinia store as a standard readable store and consume it with familiar Svelte auto-subscription syntax.</p>
+          <p>Expose any Sveltinia store as a standard readable store and bridge it into rune-mode components with Svelte’s <code>fromStore()</code>.</p>
         </article>
       </div>
     </div>

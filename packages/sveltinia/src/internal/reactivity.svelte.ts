@@ -33,10 +33,11 @@ export function makeObservable<T extends StateTree>(
   base = '',
 ): T {
   if (!isObject(value)) return value
-  const target = value as Record<PropertyKey, unknown>
+  const reactive = $state(value) as Record<PropertyKey, unknown>
+  const target = reactive
   for (const key of Object.keys(target))
     target[key] = makeObservable(target[key] as StateTree, notify, base ? `${base}.${key}` : key)
-  return new Proxy(value, {
+  return new Proxy(reactive, {
     set(target, prop, next, receiver) {
       const path = base ? `${base}.${String(prop)}` : String(prop)
       const old = Reflect.get(target, prop, receiver)
@@ -52,5 +53,5 @@ export function makeObservable<T extends StateTree>(
       if (ok) notify(path, old, undefined)
       return ok
     },
-  })
+  }) as T
 }

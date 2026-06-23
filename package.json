@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest run -c packages/sveltinia/vitest.config.ts",
     "test:watch": "vitest",
     "typecheck": "tsc -p packages/sveltinia/tsconfig.json --noEmit",
     "build": "yarn typecheck && yarn workspace sveltinia build && yarn docs:build",

@@ -1,5 +1,5 @@
 import { createSveltinia as createRoot, setActiveSveltinia } from '../core.js'
-import { clone } from '../internal/reactivity.js'
+import { clone } from '../internal/reactivity.svelte.js'
 import { createPersistedState } from '../plugins/persist.js'
 import { createDebugPlugin } from '../plugins/debug.js'
 import type { Sveltinia, SveltiniaOptions, SveltiniaPlugin, StateTree } from '../internal/types.js'
