@@ -4,9 +4,9 @@ Create a SvelteKit adapter once and make a root per request. The adapter itself 
 
 ```ts
 // src/lib/stores/root.ts
-import { createSvelteKitSveltinia } from 'sveltinia/sveltekit'
+import { createSveltinia } from 'sveltinia/sveltekit'
 
-export const stores = createSvelteKitSveltinia({ debug: import.meta.env.DEV })
+export const stores = createSveltinia({ debug: import.meta.env.DEV })
 ```
 
 In server-side load or request handling, create a root and serialize it into page data:

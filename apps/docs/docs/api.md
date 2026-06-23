@@ -31,7 +31,7 @@ description: Complete Sveltinia core, Svelte, SvelteKit, store, and type API ref
 
 ## SvelteKit function
 
-`createSvelteKitSveltinia(options?)` returns the `create`, `serialize`, and `hydrate` adapter described in [SvelteKit SSR](/docs/sveltekit).
+`createSveltinia(options?)` from `sveltinia/sveltekit` returns the `create`, `serialize`, and `hydrate` adapter described in [SvelteKit SSR](/docs/sveltekit).
 
 ## Store properties and methods
 

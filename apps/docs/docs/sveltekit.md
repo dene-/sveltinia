@@ -9,9 +9,9 @@ Use one root per server request. Never keep a server-side root in module scope.
 
 ```ts
 // src/lib/stores/adapter.ts
-import { createSvelteKitSveltinia } from 'sveltinia/sveltekit'
+import { createSveltinia } from 'sveltinia/sveltekit'
 
-export const stores = createSvelteKitSveltinia({
+export const stores = createSveltinia({
   debug: import.meta.env.DEV
 })
 ```
