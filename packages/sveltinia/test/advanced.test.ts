@@ -28,6 +28,13 @@ describe('advanced features', () => {
     const cart = useCart(sveltinia); await cart.$persist()
     expect(JSON.parse(data.get('sveltinia:cart')!).state).toEqual({ items: ['a'] })
   })
+  it('removes persisted state when the adapter supports it', async () => {
+    const data = new Map<string, string>([['sveltinia:cart', '{}']])
+    const storage = { getItem: (k: string) => data.get(k) ?? null, setItem: (k: string, v: string) => void data.set(k,v), removeItem: (k: string) => void data.delete(k) }
+    const sveltinia = createSveltinia(); sveltinia.use(createPersistedState()); const useCart = defineStore('cart', { state: () => ({ items: [] as string[] }), persist: { storage } })
+    await useCart(sveltinia).$removePersisted()
+    expect(data.has('sveltinia:cart')).toBe(false)
+  })
   it('rejects unsupported persistence storage names', () => {
     const sveltinia = createSveltinia(); sveltinia.use(createPersistedState())
     const useCart = defineStore('cart', { state: () => ({ items: [] as string[] }), persist: { storage: 'localstorage' as 'localStorage' } })

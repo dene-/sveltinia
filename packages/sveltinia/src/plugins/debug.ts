@@ -1,4 +1,4 @@
-import { DEBUG_KIND, REDACTED } from '../internal/constants.js'
+import { REDACTED } from '../internal/constants.js'
 import { flagToObject } from '../internal/util.js'
 import type {
   DebugEvent,
@@ -26,7 +26,7 @@ export function createDebugPlugin(defaults: DebugOptions = {}) {
       previousEmitter?.(event)
       logger(redact(event, config.redact ?? []))
     }
-    store._emitDebug({ kind: DEBUG_KIND.LIFECYCLE, storeId: store.$id, name: 'create' })
+    store._emitDebug({ kind: 'lifecycle', storeId: store.$id, name: 'create' })
   }
 }
 

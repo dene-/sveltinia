@@ -1,5 +1,5 @@
 import { createStore } from './internal/store-factory.js'
-import { SVELTINIA_PROVISION_KEY, CELL_KIND } from './internal/constants.js'
+import { SVELTINIA_PROVISION_KEY } from './internal/constants.js'
 import { clone } from './internal/reactivity.js'
 import type {
   App,
@@ -66,12 +66,12 @@ export function createSveltinia(options: SveltiniaOptions = {}): Sveltinia {
 }
 
 export const state = <T>(value: T): SetupCell<T> => ({
-  __sveltiniaCell: CELL_KIND.STATE,
+  __sveltiniaCell: 'state',
   value,
 })
 
 export const computed = <T>(fn: () => T): ComputedCell<T> => ({
-  __sveltiniaCell: CELL_KIND.COMPUTED,
+  __sveltiniaCell: 'computed',
   get value() {
     return fn()
   },

@@ -24,7 +24,7 @@ Use it when you want a Pinia alternative for Svelte, familiar SvelteKit Pinia-st
 
 ## Install
 
-The package is not published to npm yet. Once it is published, install it with whichever package manager your project already uses:
+Install it with whichever package manager your project already uses:
 
 ```bash
 npm install sveltinia
@@ -52,6 +52,7 @@ Install first-party plugins once per root:
 
 ```ts
 import { createDebugPlugin, createPersistedState } from 'sveltinia'
+
 sveltinia.use(createDebugPlugin()).use(createPersistedState())
 ```
 
@@ -70,6 +71,7 @@ In a Svelte component, adapt it to a Svelte readable store:
   import { useStore } from 'sveltinia/svelte'
   import { fromStore } from 'svelte/store'
   import { useCounter } from '$lib/stores/counter'
+
   const counter = fromStore(useStore(useCounter()))
 </script>
 

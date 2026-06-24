@@ -64,4 +64,4 @@ Descendant components can then read the context root and pass it to store factor
 <p>Total: {cart.current.total}</p>
 ```
 
-`toSvelteStore(store)` and `useStore(store)` are equivalent; the second name reads more naturally in components.
+`useStore(store)` returns a standard Svelte readable for component subscriptions.

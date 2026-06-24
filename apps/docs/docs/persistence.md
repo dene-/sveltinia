@@ -8,7 +8,7 @@ description: Build versioned persisted Svelte stores with browser or custom stor
 Persistence is disabled until a store opts in and the persistence plugin is installed. Browser storage is never accessed on the server.
 
 ```ts
-import { browserStorage } from 'sveltinia'
+import { browserStorage, defineStore } from 'sveltinia'
 
 export const useCartStore = defineStore('cart', {
   state: () => ({ items: [], bannerDismissed: false }),
@@ -78,4 +78,4 @@ export const useSessionStore = defineStore('session', {
 })
 ```
 
-The plugin restores automatically when a store is created. Use `await store.$restore()` when timing must be deterministic. Use `await store.$persist()` to force a write.
+Use `await store.$restore()` to read persisted state, `await store.$persist()` to force a write, and `await store.$removePersisted()` to delete the saved value. Set `lazy: false` when a store should start restoration as soon as it is created.

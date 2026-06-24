@@ -25,8 +25,7 @@ description: Complete Sveltinia core, Svelte, SvelteKit, store, and type API ref
 | --- | --- |
 | `provideSveltinia(sveltinia)` | Activates the root, adds it to Svelte context, and returns it |
 | `useSveltinia()` | Reads the root from Svelte context |
-| `toSvelteStore(store)` | Wraps a store as `Readable<T>` |
-| `useStore(store)` | Alias of `toSvelteStore` |
+| `useStore(store)` | Wraps a store as `Readable<T>` |
 
 ## SvelteKit function
 
@@ -40,10 +39,11 @@ description: Complete Sveltinia core, Svelte, SvelteKit, store, and type API ref
 | `$state` | Read or patch the raw state object |
 | `$patch(object \| fn)` | Merge a partial object or group a mutation callback |
 | `$reset()` | Restore Options Store state; Setup Stores provide their own reset |
-| `$subscribe(callback, options?)` | Observe mutations and return an unsubscribe function |
+| `$subscribe(callback)` | Observe mutations and return an unsubscribe function |
 | `$onAction(callback)` | Observe actions and return an unsubscribe function |
 | `$persist()` | Write configured persisted state |
 | `$restore()` | Read and merge configured persisted state |
+| `$removePersisted()` | Remove this store's persisted state when the adapter supports removal |
 | `$dispose()` | Remove listeners and unregister the store |
 
 ## Public types

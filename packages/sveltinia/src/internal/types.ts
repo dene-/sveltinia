@@ -104,6 +104,7 @@ export interface WritableStore<S extends StateTree = StateTree> {
 export interface PersistableStore {
   $persist(): Promise<void>
   $restore(): Promise<void>
+  $removePersisted(): Promise<void>
   $restored: Promise<void>
 }
 

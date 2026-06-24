@@ -1,6 +1,5 @@
 import { clone, isSafeKey, merge } from '../internal/reactivity.js'
 import {
-  DEBUG_KIND,
   DEFAULT_PERSIST_VERSION,
   LEGACY_PERSIST_VERSION,
 } from '../internal/constants.js'
@@ -94,7 +93,7 @@ function installPersistence(store: Store, config: PersistOptions): void {
         restoring = false
       }
       store._emitDebug?.({
-        kind: DEBUG_KIND.PERSISTENCE,
+        kind: 'persistence',
         storeId: store.$id,
         name: 'restore',
         detail: key,
@@ -110,9 +109,21 @@ function installPersistence(store: Store, config: PersistOptions): void {
       serializer.serialize({ version: config.version ?? DEFAULT_PERSIST_VERSION, state }),
     )
     store._emitDebug?.({
-      kind: DEBUG_KIND.PERSISTENCE,
+      kind: 'persistence',
       storeId: store.$id,
       name: 'write',
+      detail: key,
+    })
+  }
+
+  store.$removePersisted = async (): Promise<void> => {
+    if (!storage.removeItem)
+      throw new Error(`Persistence storage for "${store.$id}" does not support removeItem().`)
+    await storage.removeItem(key)
+    store._emitDebug?.({
+      kind: 'persistence',
+      storeId: store.$id,
+      name: 'remove',
       detail: key,
     })
   }

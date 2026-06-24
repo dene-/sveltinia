@@ -1,4 +1,3 @@
-import { DEBUG_KIND } from './constants.js'
 import { noopDebugEmitter, type Clock, type DebugEmitter } from './util.js'
 import type { ActionContext, ActionSubscription, DebuggableStore, Store } from './types.js'
 
@@ -30,7 +29,7 @@ export function instrumentAction(
     const notifyActionSuccess = (value: unknown): unknown => {
       afterCallbacks.forEach((cb) => cb(value))
       emitDebug({
-        kind: DEBUG_KIND.ACTION,
+        kind: 'action',
         storeId,
         name,
         duration: clock() - start,
@@ -41,7 +40,7 @@ export function instrumentAction(
     const notifyActionError = (error: unknown): void => {
       onErrorCallbacks.forEach((cb) => cb(error))
       emitDebug({
-        kind: DEBUG_KIND.ACTION,
+        kind: 'action',
         storeId,
         name,
         duration: clock() - start,

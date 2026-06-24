@@ -1,5 +1,4 @@
 import { instrumentAction } from './action.js'
-import { CELL_KIND, DEBUG_KIND, MUTATION_TYPE } from './constants.js'
 import { clone, makeObservable, merge } from './reactivity.js'
 import { defaultClock, noopDebugEmitter, type Clock } from './util.js'
 import type {
@@ -30,10 +29,10 @@ type StoreRecord = Record<PropertyKey, unknown> & {
 }
 
 const isStateCell = (value: unknown): value is SetupCell<unknown> =>
-  (value as SetupCell<unknown>)?.__sveltiniaCell === CELL_KIND.STATE
+  (value as SetupCell<unknown>)?.__sveltiniaCell === 'state'
 
 const isComputedCell = (value: unknown): value is ComputedCell<unknown> =>
-  (value as ComputedCell<unknown>)?.__sveltiniaCell === CELL_KIND.COMPUTED
+  (value as ComputedCell<unknown>)?.__sveltiniaCell === 'computed'
 
 interface StoreShell {
   store: StoreRecord
@@ -85,7 +84,7 @@ function createStoreShell<S extends StateTree>(
   const emitMutation = (mutation: Mutation): void => {
     for (const callback of subscribers) callback(mutation, reactiveState)
     sveltinia.state[id] = reactiveState
-    store._emitDebug({ kind: DEBUG_KIND.MUTATION, storeId: id, mutation })
+    store._emitDebug({ kind: 'mutation', storeId: id, mutation })
   }
 
   const notify = (path: string, oldValue: unknown, newValue: unknown): void => {
@@ -95,7 +94,7 @@ function createStoreShell<S extends StateTree>(
       pendingBatch.events!.push(event)
       return
     }
-    emitMutation({ type: MUTATION_TYPE.DIRECT, storeId: id, events: [event] })
+    emitMutation({ type: 'direct', storeId: id, events: [event] })
   }
 
   const reactiveState = makeObservable(clone(initialState), notify)
@@ -110,7 +109,7 @@ function createStoreShell<S extends StateTree>(
 
   store.$patch = (patch: Partial<StateTree> | ((state: StateTree) => void)): void => {
     const type =
-      typeof patch === 'function' ? MUTATION_TYPE.PATCH_FUNCTION : MUTATION_TYPE.PATCH_OBJECT
+      typeof patch === 'function' ? 'patch function' : 'patch object'
     pendingBatch = {
       type,
       storeId: id,
@@ -142,7 +141,7 @@ function createStoreShell<S extends StateTree>(
     subscribers.clear()
     actionSubscribers.clear()
     sveltinia.unregisterStore(id)
-    store._emitDebug({ kind: DEBUG_KIND.LIFECYCLE, storeId: id, name: 'dispose' })
+    store._emitDebug({ kind: 'lifecycle', storeId: id, name: 'dispose' })
   }
 
   const bindAction = (name: string, action: ActionFn): void => {
@@ -192,52 +191,6 @@ function createStoreShell<S extends StateTree>(
   }
 }
 
-interface StoreStrategy {
-  extractInitialState(definition: unknown, sveltinia: Sveltinia, id: string): StateTree
-  populate(definition: unknown, id: string, shell: StoreShell): void
-}
-
-const optionsStrategy: StoreStrategy = {
-  extractInitialState(definition, sveltinia, id) {
-    const opts = definition as DefineStoreOptions<StateTree>
-    return sveltinia.state[id] ?? opts.state()
-  },
-  populate(definition, _id, shell) {
-    const opts = definition as DefineStoreOptions<StateTree>
-    const { store, bindAction, bindGetter } = shell
-    for (const [name, getter] of Object.entries(opts.getters ?? {}))
-      bindGetter(name, getter as GetterFn)
-    for (const [name, action] of Object.entries(opts.actions ?? {}))
-      bindAction(name, action as ActionFn)
-    store.$reset = (): void => store.$patch(clone(opts.state()))
-  },
-}
-
-const setupStrategy: StoreStrategy = {
-  extractInitialState() {
-    return {}
-  },
-  populate(definition, id, shell) {
-    const setup = definition as SetupStore
-    const { store, bindAction, bindStateCell, bindComputedCell, bindPlainStateValue } = shell
-    const setupResult = setup()
-    for (const [name, value] of Object.entries(setupResult)) {
-      if (isStateCell(value)) bindStateCell(name, value)
-      else if (isComputedCell(value)) bindComputedCell(name, value)
-      else if (typeof value === 'function') bindAction(name, value as ActionFn)
-      else bindPlainStateValue(name, value)
-    }
-    store.$reset = (): void => {
-      throw new Error(`Setup store "${id}" must expose its own reset action.`)
-    }
-  },
-}
-
-const strategies: Record<'options' | 'setup', StoreStrategy> = {
-  options: optionsStrategy,
-  setup: setupStrategy,
-}
-
 function applyPlugins(
   sveltinia: Sveltinia,
   store: Store,
@@ -257,13 +210,29 @@ export function createStore<S extends StateTree>(
   const existing = sveltinia.getStore(id)
   if (existing) return existing as Store<S>
 
-  const kind: 'options' | 'setup' = typeof definition === 'function' ? 'setup' : 'options'
-  const strategy = strategies[kind]
-  const options = kind === 'options' ? (definition as DefineStoreOptions) : setupOptions
-  const initialState = strategy.extractInitialState(definition, sveltinia, id)
+  const isSetupStore = typeof definition === 'function'
+  const options = isSetupStore ? setupOptions : (definition as DefineStoreOptions)
+  const initialState = isSetupStore ? {} : (sveltinia.state[id] ?? definition.state())
 
   const shell = createStoreShell<S>(id, sveltinia, initialState, clock)
-  strategy.populate(definition, id, shell)
+  if (isSetupStore) {
+    const setupResult = definition()
+    for (const [name, value] of Object.entries(setupResult)) {
+      if (isStateCell(value)) shell.bindStateCell(name, value)
+      else if (isComputedCell(value)) shell.bindComputedCell(name, value)
+      else if (typeof value === 'function') shell.bindAction(name, value as ActionFn)
+      else shell.bindPlainStateValue(name, value)
+    }
+    shell.store.$reset = (): void => {
+      throw new Error(`Setup store "${id}" must expose its own reset action.`)
+    }
+  } else {
+    for (const [name, getter] of Object.entries(definition.getters ?? {}))
+      shell.bindGetter(name, getter as GetterFn)
+    for (const [name, action] of Object.entries(definition.actions ?? {}))
+      shell.bindAction(name, action as ActionFn)
+    shell.store.$reset = (): void => shell.store.$patch(clone(definition.state()))
+  }
 
   sveltinia.registerStore(id, shell.store as unknown as Store, shell.reactiveState)
   applyPlugins(sveltinia, shell.store as unknown as Store, options)

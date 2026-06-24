@@ -23,4 +23,5 @@ Creates a Setup Store factory. Return `state()` cells for state, `computed()` ce
 | `$onAction(callback)` | Observe actions; register `after` and `onError` hooks. |
 | `$persist()` | Write configured persisted state. |
 | `$restore()` | Read and merge configured persisted state. |
+| `$removePersisted()` | Remove this store's persisted state. |
 | `$dispose()` | Remove listeners and unregister the store. |
