@@ -2,6 +2,13 @@ name: Deploy documentation
 on:
   push:
     branches: [main]
+    paths:
+      - apps/docs/**
+      - packages/sveltinia/README.md
+      - packages/sveltinia/package.json
+      - package.json
+      - yarn.lock
+      - .github/workflows/deploy-docs.yml
   workflow_dispatch:
 permissions:
   contents: read
