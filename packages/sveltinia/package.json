@@ -10,11 +10,12 @@
   "bugs": {"url":"https://github.com/dene-/sveltinia/issues"},
   "keywords": ["svelte", "svelte5", "sveltekit", "svelte-pinia", "sveltekit-pinia", "pinia", "pinia-alternative", "state-management", "svelte-state-management", "svelte-stores", "persisted-stores", "persisted-svelte-stores", "ssr", "sveltekit-ssr"],
   "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {"types":"./dist/index.d.ts","default":"./dist/index.js"},
-    "./svelte": {"types":"./dist/adapters/svelte.d.ts","default":"./dist/adapters/svelte.js"},
-    "./sveltekit": {"types":"./dist/adapters/sveltekit.d.ts","default":"./dist/adapters/sveltekit.js"}
+    ".": {"types":"./dist/index.d.ts","import":"./dist/index.js","default":"./dist/index.js"},
+    "./svelte": {"types":"./dist/adapters/svelte.d.ts","import":"./dist/adapters/svelte.js","default":"./dist/adapters/svelte.js"},
+    "./sveltekit": {"types":"./dist/adapters/sveltekit.d.ts","import":"./dist/adapters/sveltekit.js","default":"./dist/adapters/sveltekit.js"}
   },
   "files": ["dist", "README.md", "LICENSE"],
   "publishConfig": {"access":"public"},

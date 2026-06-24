@@ -1,0 +1,26 @@
+name: CL
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: cl-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          case "$PR_TITLE" in
+            feat:\ *|fix:\ *|docs:\ *|style:\ *|refactor:\ *|test:\ *|chore:\ *|build:\ *|ci:\ *|perf:\ *|revert:\ *) ;;
+            *) echo "PR title must use Conventional Commits, e.g. feat: add store reset"; exit 1 ;;
+          esac

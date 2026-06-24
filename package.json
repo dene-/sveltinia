@@ -14,7 +14,9 @@
     "docs:dev": "vitepress dev apps/docs",
     "docs:build": "vitepress build apps/docs",
     "publish:dry": "yarn build && npm publish ./packages/sveltinia --access public --registry https://registry.npmjs.org --dry-run",
-    "publish:npm": "yarn build && npm publish ./packages/sveltinia --access public --registry https://registry.npmjs.org"
+    "publish:npm": "yarn build && npm publish ./packages/sveltinia --access public --registry https://registry.npmjs.org",
+    "release:minor": "cd packages/sveltinia && npm version minor && cd ../.. && yarn build && npm publish ./packages/sveltinia --access public --registry https://registry.npmjs.org && git push && git push --tags",
+    "release:major": "cd packages/sveltinia && npm version major && cd ../.. && yarn build && npm publish ./packages/sveltinia --access public --registry https://registry.npmjs.org && git push && git push --tags"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
